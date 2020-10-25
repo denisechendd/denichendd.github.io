@@ -7,6 +7,7 @@ excerpt_separator: <!--more-->
 ---
 # Collaborative Deep Learning for Recommender Systems
 Recommender Systems are widely used by many companies to recommend products to the target customers. Content-based methods, collaborative filtering (CF) based methods, and hybrid methods are three main categories in the Recommender Systems. Content-based methods generate the recommendation via user profiles or product descriptions. On the other hand, CF-based methods utilize the users' behavioral or preferences datasets, such as user ratings on items, instead of user or product content information. Hybrid methods are the combinations of content-based and CF-based methods. Collaborative deep learning (CDL), hierarchical Bayesian model, learns the deep representation for the content information and applies the collaborative filtering for the ratings (feedback) matrix. CDL model is an advanced approach with the experimentation of the real-world datasets. <br>
+<!--more-->
 **In this article, you will learn the singular value decomposition and truncated SVD of the recommender system:** <br>
 (1) Introduction <br>
 (2) NOTATION AND PROBLEM FORMULATION <br>
