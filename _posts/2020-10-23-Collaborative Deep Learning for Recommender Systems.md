@@ -20,9 +20,9 @@ W_l_∗n: column n of W_l in the layer l  <br>
 W+: weight matrices and biases in all layers <br>
 ## Stacked Denoising Autoencoders
 SDAE is the model to process the input encoding data through the representation learning to produce the predicted output. The neural network structure is shown in the figure 2. Among all these layers, X2 is the middle hidden layer and X0 represents the clean input data. <br>
-<img src="image/image1.png" width="80%" height="80%"> <br>
-<img src="image/image2.png" width="80%" height="80%"> <br>
-<img src="image/image3.png" width="80%" height="80%"> <br>
+<img src="/images/Blog/CDL/image1.png" width="80%" height="80%"> <br>
+<img src="/images/Blog/CDL/image2.png" width="80%" height="80%"> <br>
+<img src="/images/Blog/CDL/image3.png" width="80%" height="80%"> <br>
 The graph above is the optimization formula for SDAE, where λ is a regularization parameter and || .||denotes the Frobenius norm. <br>
 <br>
 Figure 1 shows the CDL graphical model, and SDAE graphical model is circled in red. SDAE with L = 2 is shown in graph 2. The graphical model of the degenerated CDL is shown in right, and the SDAE encoder model is shown in the dashed rectangle. There is no decoder in SDAE when L is 2. For better model implementation, variables x1 have vanished and there would be remaining xL/2 remained in the graphical models. <br>
