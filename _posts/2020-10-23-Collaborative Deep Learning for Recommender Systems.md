@@ -1,6 +1,5 @@
 ---
 title: Collaborative Deep Learning for Recommender Systems
-#permalink: /posts/2020-06-26-Dashboard Tutorial (II)
 date: 2020-10-24
 excerpt_separator: <!--more-->
 ---
