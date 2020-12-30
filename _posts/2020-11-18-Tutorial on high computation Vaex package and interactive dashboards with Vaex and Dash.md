@@ -42,54 +42,54 @@ The next step is to set up the Dash application with a simple layout. In our cas
 - The components part of the “control panel” that lets the user select trips based on time dcc.Dropdown(id='days') and day of week dcc.Dropdown(id='days');
 - The interactive map dcc.Graph(id='heatmap_figure');
 - The resulting visualizations are based on the user input, which will show the distributions of the trip costs and durations, and a markdown block showing some key statistics. The components are dcc.Graph(id='trip_summary_amount_figure'), dcc.Graph(id='trip_summary_duration_figure'), and dcc.Markdown(id='trip_summary_md') respectively.
-- Several dcc.Store() components track the users’ state at the client-side. <br>
-<script src="https://gist.github.com/denisechendd/76b11040fee5fbca6ab04564453742bc.js"></script> <br>
-Pic1: Code cell of the dash function of pick-up days and hour slider <br>
+- Several dcc.Store() components track the users’ state at the client-side. <br> <br>
+<script src="https://gist.github.com/denisechendd/76b11040fee5fbca6ab04564453742bc.js"></script>
+**Pic1: Code cell of the dash function of pick-up days and hour slider** <br>
 Now let’s talk about how to make everything work. We organize our functions into three groups: <br>
 - compute_ functions are the basis for the visualization to calculate the relevant aggregations and statistics
 - create_figure_ function creates the figure from the aggregation compute
 - Dash callback functions get to interact with the compute function, and transfer the output to the figure creation functions after the user makes changes. <br>
 The separated functions into three groups would better organize the dashboard functionality. Besides, the application can be pre-populated and avoids the callback triggering on the initial page load. <br>
 From the heatmap, the user can select the pick-up hour and day of the week from the Range Slider and Dropdown elements as the data subset. <br>
-Let’s start by computing the heatmap. The initial step is selecting the relevant subset of the data the user may have specified via the Range Slider and Dropdown elements that control the pick-up hour and day of the week respectively: <br>
-<script src="https://gist.github.com/denisechendd/d51aeef6e2bd94c7eda6a2967825d6ef.js"></script> <br>
-Pic2: Code cell of heatmap function <br>
-From the code above, the data frame is copied into the selection function, which is the stateful object in the DataFrame. Dash is multi-threaded, and it uses the selection method other than filtering to boost the performance. The code cell below computes the heatmap data: <br>
-<script src="https://gist.github.com/denisechendd/3dc0f4bfdc61637334dce040364a4060.js"></script> <br>
-Pic3: Code cell of the heatmap compute function
+Let’s start by computing the heatmap. The initial step is selecting the relevant subset of the data the user may have specified via the Range Slider and Dropdown elements that control the pick-up hour and day of the week respectively: <br> <br>
+<script src="https://gist.github.com/denisechendd/d51aeef6e2bd94c7eda6a2967825d6ef.js"></script>
+**Pic2: Code cell of heatmap function** <br>
+From the code above, the data frame is copied into the selection function, which is the stateful object in the DataFrame. Dash is multi-threaded, and it uses the selection method other than filtering to boost the performance. The code cell below computes the heatmap data: <br> <br>
+<script src="https://gist.github.com/denisechendd/3dc0f4bfdc61637334dce040364a4060.js"></script>
+**Pic3: Code cell of the heatmap compute function** <br>
 All Vaex DataFrame methods are applied to all sizes of data with its parallelization and out-of-core functions. From the heatmap computation, two columns are passed via the `binby` argument to the `.count()` method. Then, the number of samples is calculated in a grid specified by those axes. The grid is drawn from two elements `shape` (i.e. the number of bins per axis) and `limits` (or extent). The output of the data array is `array_type="xarray"`, where the numpy array has the labeled dimension. The numpy array is convenient for plotting. <br>
-With the heatmap computation, the code cell below will show how to create the figure on the dashboard. <br>
-<script src="https://gist.github.com/denisechendd/bc1209ab148382e3c27265b04750260f.js"></script> <br>
-Pic4: Code cell of the heatmap plot  <br>
+With the heatmap computation, the code cell below will show how to create the figure on the dashboard. <br> <br>
+<script src="https://gist.github.com/denisechendd/bc1209ab148382e3c27265b04750260f.js"></script>
+**Pic4: Code cell of the heatmap plot**  <br>
 From the function above, the function of Plotly Express is applied to render the heatmap. Given the `trip_start` and `trip_end` coordinates, both variables would be added as individual `plotly.graph_objs.Scatter` traces to the figure. The interactive Plotly figure supports the zooming, panning, and clicking functions. <br>
-The code cell below shows how to update the heatmap figure from the modifications made in the data selection or changes to the map view using the Dash callback. <br>
-<script src="https://gist.github.com/denisechendd/f89b720e260e522082c686ac3357572e.js"></script> <br>
-Pic5: Code cell of the heatmap update <br>
+The code cell below shows how to update the heatmap figure from the modifications made in the data selection or changes to the map view using the Dash callback. <br> <br>
+<script src="https://gist.github.com/denisechendd/f89b720e260e522082c686ac3357572e.js"></script>
+**Pic5: Code cell of the heatmap update** <br>
 From the code block above, the function would be called when there is a change of the `Input` values. In the function, `compute_heatmap_data` is to do the aggregation computation with the new input parameters, and the new heatmap figure is generated with the computed result. `prevent_initial_call` argument of the decorator is to avoid the function from being called when the dashboard runs in the first round.
 Despite the fact that `trip_start` or `trip_end` parameters don’t appear in `compute_heatmap_data`, `compute_heatmap_data` is called when both parameters change the input, and `update_heatmap_figure` is triggered. The decorator attached to `compute_heatmap_data` is to prevent several calls of the function. `flask_caching` library, suggested in Plotly, is fast, easy, and simple to cache old computations for 60 seconds. <br>
-The code cell below shows the user interactions with the heatmap via panning and zooming from the Dash callback function. <br>
-<script src="https://gist.github.com/denisechendd/12b42e3fd6db69bbdb8b918e8b150a54.js"></script> <br>
-Pic6: Code cell of heatmap pan and zoom function <br>
-According to the dash callback below, it is to capture and respond to click events: <br>
-<script src="https://gist.github.com/denisechendd/569ac9d40bf187832837ca3d54998ebf.js"></script> <br>
-Pic7: Code cell of capturing the click events of heatmap <br>
+The code cell below shows the user interactions with the heatmap via panning and zooming from the Dash callback function. <br> <br>
+<script src="https://gist.github.com/denisechendd/12b42e3fd6db69bbdb8b918e8b150a54.js"></script>
+**Pic6: Code cell of heatmap pan and zoom function** <br>
+According to the dash callback below, it is to capture and respond to click events: <br> <br>
+<script src="https://gist.github.com/denisechendd/569ac9d40bf187832837ca3d54998ebf.js"></script>
+**Pic7: Code cell of capturing the click events of heatmap** <br>
 Update key components in both the above callback functions are to render the heatmap. Therefore, when there are events like click or relay (pan or zoom), update_heatmap_figure function would be called from the updating key components, and it would update the heatmap figure. The function above creates the fully interactive heatmap figure. The heatmap would be updated via external controls such as the RangeSlider and Dropdown menu or through the interactive function in the figure. <br>
-Since the Dash application is stateless, reactive, and functional, functions in Dash are to create visualizations. In the Dash application, we can click and select trips starting from the “origin” and ending at the “destination” point. Regarding those trips, it would show up the cost distribution and duration, and highlight the most likely values for both. These can be coded in the function below. <br>
-<script src="https://gist.github.com/denisechendd/0e5c00e025eed43f21859dff52b8b52c.js"></script> <br>
-Pic8: Code cell of the heatmap details of trip duration and cost <br>
-The helper function is defined to create the histogram figure with the input of the aggregated data. <br>
-<script src="https://gist.github.com/denisechendd/3033d7e3d092c576f4a63303842749b3.js"></script> <br>
-Pic9: Code cell of the histogram regarding the cost amount and trip duration <br>
-With all the components, we can link them to the Dash application via a callback function: <br>
-<script src="https://gist.github.com/denisechendd/d525770fc1112705d446a8fd24a8962d.js"></script> <br>
-Pic10: Code cell of the trip summary regarding number of rides, total cost, and trip duration <br>
+Since the Dash application is stateless, reactive, and functional, functions in Dash are to create visualizations. In the Dash application, we can click and select trips starting from the “origin” and ending at the “destination” point. Regarding those trips, it would show up the cost distribution and duration, and highlight the most likely values for both. These can be coded in the function below. <br> <br>
+<script src="https://gist.github.com/denisechendd/0e5c00e025eed43f21859dff52b8b52c.js"></script>
+**Pic8: Code cell of the heatmap details of trip duration and cost** <br>
+The helper function is defined to create the histogram figure with the input of the aggregated data. <br> <br>
+<script src="https://gist.github.com/denisechendd/3033d7e3d092c576f4a63303842749b3.js"></script>
+**Pic9: Code cell of the histogram regarding the cost amount and trip duration** <br>
+With all the components, we can link them to the Dash application via a callback function: <br> <br>
+<script src="https://gist.github.com/denisechendd/d525770fc1112705d446a8fd24a8962d.js"></script>
+**Pic10: Code cell of the trip summary regarding number of rides, total cost, and trip duration** <br>
 The callback function above is updatable to the changes from the control panel, along with the click selection of new origin or destination points. Through the registered event, the callback function is triggered and will call the compute_trip_details and create_histogram_figure functions with new parameters input. Then, the visualization is updated with the values input to these functions. <br>
-There is one condition considered when a user only selects the starting point, but not yet click on the new destination. Therefore, the histogram would be “blank out” with the functions below. <br>
-<script src="https://gist.github.com/denisechendd/13fbd350b2b1602e6822b65dcde6d6a5.js"></script> <br>
-Pic11: code cell of the trip origin and destination function in heatmap <br>
-Finally, the code in the source file below is to run the dashboard. <br>
-<script src="https://gist.github.com/denisechendd/8b8cd3c035773f6d6bd5939e0295bd12.js"></script> <br>
-Pic12: Code cell of the Vaex dashboard source file <br>
+There is one condition considered when a user only selects the starting point, but not yet click on the new destination. Therefore, the histogram would be “blank out” with the functions below. <br> <br>
+<script src="https://gist.github.com/denisechendd/13fbd350b2b1602e6822b65dcde6d6a5.js"></script>
+**Pic11: code cell of the trip origin and destination function in heatmap** <br>
+Finally, the code in the source file below is to run the dashboard. <br> <br>
+<script src="https://gist.github.com/denisechendd/8b8cd3c035773f6d6bd5939e0295bd12.js"></script>
+**Pic12: Code cell of the Vaex dashboard source file** <br>
 Then, the interactive Dash application is created! After downloading the taxi data from the github page, the dashboard would be executed locally through the source file via the command line of `python app.py` in the terminal. <br>
 And there we have it: a simple yet powerful interactive Dash application! To run it locally, you can execute the `python app.py` command in your terminal, provided that you have named your source file as “app.py”, and you have the taxi data at hand. You can also review the entire source file via this GitHub Gist.
 
