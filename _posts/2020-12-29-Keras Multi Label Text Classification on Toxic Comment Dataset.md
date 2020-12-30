@@ -18,7 +18,7 @@ This article is introduced to predict multi-labels on text classification. The t
 The toxic comment dataset includes the edits from Wikipedia's talk page. There are six classes in the comment data where each record would be matched with 1 class or several classes. Thus, this dataset is used for the multi-label classification problem. The toxic data can be downloaded from the link. The "train.csv" contains 160,000 rows, and it would be the main data for the multi-label classification introduced below.  <br>
 The code snippet shows the first 5 rows of the dataset. <br>
 <script src="https://gist.github.com/denisechendd/72bc154859abe4e84ad55a078e401773.js"></script> <br>
-From the dataframe below, the comment_text column is the main input of the data into the machine learning model. According to the dataframe, each class column is shown in binary representation with 1 indicating the matched-class, and 0 being the non-matched class. <br>
+From the dataframe below, the comment_text column is the main input of the data into the machine learning model. According to the dataframe, each class column is shown in binary representation with 1 indicating the matched-class, and 0 being the non-matched class. <br> <br>
 <img src="/images/Blog/KerasMultiLabel/img1.png" width="80%" height="80%"> <br>
 The data is removed with the null value or the empty string. <br> <br>
 <script src="https://gist.github.com/denisechendd/1eb4fadbc666d362d6739f04d1bacbc1.js"> </script>
@@ -48,7 +48,7 @@ The accuracy and loss graphs are shown below. The training accuracy is a bit low
 There are 6 labels combined in the y variable, and y variable would be split into several labels where each of them is input into each output layer. There would be 6 individual labels in the train and test dataset. 
 <script src="https://gist.github.com/denisechendd/677d873e694ce47e0d71a7289b6e4ee6.js"> </script>
 The model is structured with one input layer, one embedding layer, and one LSTM layer with 128 neurons. There are 6 dense output layers, and each layer is for each label in the model. Each output layer will have 1 neuron with a sigmoid activation function which produces a value ranged between 0 and 1. <br>
-The model result is shown in the graphs below. Top 3 classes such as threat, identity_hate, and severe toxic reach the 99% accuracy rate within the 5 epoches. In addition, the obscene and insult class achieve a 98% accuracy rate. Overall, the performance of the multiple output layers is above 96%. In terms of the loss, the loss of three classes likewise threat, severe toxic, and identity hate is around 0.05, and the loss is computed by the binary cross-entropy. <br>
+The model result is shown in the graphs below. Top 3 classes such as threat, identity_hate, and severe toxic reach the 99% accuracy rate within the 5 epoches. In addition, the obscene and insult class achieve a 98% accuracy rate. Overall, the performance of the multiple output layers is above 96%. In terms of the loss, the loss of three classes likewise threat, severe toxic, and identity hate is around 0.05, and the loss is computed by the binary cross-entropy. <br> <br>
 <img src="/images/Blog/KerasMultiLabel/img7.png" width="80%" height="80%"> <br>
 <img src="/images/Blog/KerasMultiLabel/img8.png" width="80%" height="80%"> <br>
 ## Conclusion
