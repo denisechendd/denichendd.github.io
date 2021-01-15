@@ -5,7 +5,7 @@ excerpt_separator: <!--more-->
 ---
 
 <!--more-->
-In this article, it introduces the time series predicting method on the monthly sales dataset with Python Keras model. The article would further introduce data analysis and machine learning. <br>
+In this article, it introduces the time series predicting method on the monthly sales dataset with Python Keras model. The article would further introduce data analysis and machine learning. <br> <br>
 **In this article, you will learn the LSTM and BiLSTM modeling method for the monthly sales dataset:** <br>
 (1) Introduction <br>
 (2) Data Wrangling <br>
@@ -37,10 +37,9 @@ The plot shows the monthly sales difference over the months from 2013 to 2017. T
 
 Then, the feature set would be made from the previous sales data. The goal is to forecast the next monthly sales from the input of the different sales over the past year. The look-back period is set as 12 and can be varied for every model. The lag features are named as lag_1 to lag_12 columns by using the shift() method. <br>
 <script src="https://gist.github.com/denisechendd/d01124c9408791a864a126151579a379.js"></script> <br>
-Adjusted R-squared is to determine whether features are useful for prediction. Adjusted R-squared shows the feature variance from lag_1 to lag_12 for diff. The code cell below shows that the linear regression model (OLS - Ordinary Least Squares) is applied and the Adjusted R-squared is computed. The example shows the variation of the lag_1 to the column diff. The result shows that lag_1 has 3% of the variation. While adding more features, the variance increases from 3% to 98%, which is quite impressive. The model can be built with more confidence after scaling the data. <br>
+Adjusted R-squared is to determine whether features are useful for prediction. Adjusted R-squared shows the feature variance from lag_1 to lag_12 for diff. The code cell below shows that the linear regression model (OLS - Ordinary Least Squares) is applied and the Adjusted R-squared is computed. The example shows the variation of the lag_1 to the column diff. The result shows that lag_1 has 3% of the variation. While adding more features, the variance increases from 3% to 98%, which is quite impressive. The model can be built with more confidence after scaling the data. <br> <br>
 <script src="https://gist.github.com/denisechendd/c47f441751769e4cc6d79c68f47c7f10.js"></script>
-Before scaling, the data shall be split into train and test sets. The last six months sales data is extracted to the test set. MinMaxScaler is applied as the scaler. <br>
-As the scaler, we are going to use MinMaxScaler, which will scale each future between -1 and 1: <br>
+Before scaling, the data shall be split into train and test sets. The last six months sales data is extracted to the test set. MinMaxScaler is applied as the scaler. As the scaler, we are going to use MinMaxScaler, which will scale each future between -1 and 1: <br>
 <script src="https://gist.github.com/denisechendd/f3f8bc4a520274b7790d3ef15ad333a5.js"></script> <br>
 ## Building the LSTM model
 The lagged features are generated from the difference between the current month's sales and last month's sales. There are 12 lagged features produced as monthly-sales difference through a year. The lagged features would be split into feature and label sets from the scaled dataset. The label for the train and test dataset is extracted from the difference (previous month) sales price. In the time series model, the data is reshaped into 3 dimensions as [samples, time steps, features]. The data input is one-time step of each sample for the multivariate problem when there are several time variables in the predictive model. <br>
@@ -59,7 +58,7 @@ The following code shows that the predictive monthly-sales difference is compute
 <script src="https://gist.github.com/denisechendd/be9ffba7b0448bd24347fe078dffe2dc.js"></script> <br>
 The transformed prediction is the sales difference of the previous day. Take the transformed sales prediction difference, and add the sales of the previous day. The added value from the output would be the predicted sales at the current date. Then, the data frame is created with the dates and the predictions. <br>
 <script src="https://gist.github.com/denisechendd/5fdc5e0886254f3f776af6e22dd64d13.js"></script> <br>
-From the plot below, we predict the six-month sales from July 2017 to December 2017. The red line shows the predicted sales value. From August to December in 2017, the sales gap becomes narrow. <br>
+From the plot below, we predict the six-month sales from July 2017 to December 2017. The red line shows the predicted sales value. From August to December in 2017, the sales gap becomes narrow. <br> <br>
 <script src="https://gist.github.com/denisechendd/96aa1c4d999c4067a73b5df01381df3b.js"></script> <br>
 <img src="/images/Blog/TimeSeries_LSTM/img_5.png" width="80%" height="80%"> <br>
 
@@ -69,7 +68,7 @@ From the plot below, we predict the six-month sales from July 2017 to December 2
 - From the predictive-sales transformation process, we get the predictive monthly-sales difference which is reshaped into 3 dimensions. Then, we concatenate the 3-d label tensor with other lagged feature tensors. Afterward, the 3-d tensors are reshaped into 2-d which are transformed inversely through the scaler. Take the transformed sales prediction difference, and add the sales of the previous day. The added value from the output would be the predicted sales at the current date.
 
 ## Reference
-- Predicting Sales
+- Predicting Sales <br>
 https://stackabuse.com/python-for-nlp-multi-label-text-classification-with-keras/
-- How to Develop a Bidirectional LSTM For Sequence Classification in Python with Keras
+- How to Develop a Bidirectional LSTM For Sequence Classification in Python with Keras <br>
 https://machinelearningmastery.com/develop-bidirectional-lstm-sequence-classification-python-keras/
