@@ -122,16 +122,16 @@ author_profile: true
 
 **August, 2020**
 
-<img src="/images/Online_certi/certificate_19.jpeg" width="80%" height="80%">
+<img src="/images/Online_certi/certificate_19.jpg" width="80%" height="80%">
 
 ## Sequences, Time Series and Prediction
 
 **December, 2020**
 
-<img src="/images/Online_certi/certificate_20.jpeg" width="80%" height="80%">
+<img src="/images/Online_certi/certificate_20.jpg" width="80%" height="80%">
 
 ## Databases and SQL for Data Science With Python
 
 **March, 2021**
 
-<img src="/images/Online_certi/certificate_21.jpeg" width="80%" height="80%">
+<img src="/images/Online_certi/certificate_21.jpg" width="80%" height="80%">
