@@ -78,10 +78,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Denise Chen"
+  name             : "陳玟霓 Denise Chen"
   avatar           : "denise_chen.jpg"
   bio              : "Data Scientist at Statistics Canada| Master in Computer Science, Big Data"
-  location         : "Canada"
+  location         : "台北"
   employer         :
   googlescholar    :
   email            : "denisechendd@gmail.com"
@@ -104,7 +104,7 @@ author:
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : 
+  twitter          :
   vine             :
   weibo            :
   xing             :

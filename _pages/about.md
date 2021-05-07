@@ -1,7 +1,7 @@
 ---
 permalink: /
 #layout: archive
-title: "About"
+title: "自我介紹"
 excerpt: "About me"
 author_profile: true
 redirect_from:
@@ -19,6 +19,7 @@ redirect_from:
 * 將資料匯入ElasticSearch搜索引擎，並用Kibana產出數據圖表
 * 用Python分析數據，產出圖表
 
+## About Me
 As an Data enthusiast, I am passionate in deepening my knowledge in data science field by reading the latest technology news, knowing the latest model in NLP or Computer Vision field, and getting the insight of innovative ideas using machine learning technique in daily lives. Personally, I get
 motivated by reading others' blogs of machine learning articles and hosting personal projects on Cloud infrastructure.
 ### My personality is listed as below
@@ -26,7 +27,6 @@ motivated by reading others' blogs of machine learning articles and hosting pers
 * Looked for more challenges and being a passionate problem-solver with experiences of Hackathons
 * Collaborative team player that makes most of team spirit and always enjoy working with a team
 * Always found several solutions to determine the best approach to solve problems
-* Believed everything is possible and willing to try it out
 
 
 During my leisure time, I was an active learner to take several online courses from **Coursera**, **Udemy**, **Udacity**, and watching Youtube channel. Recently, I am a beginner of writing blog posts related in data science field. I am active to keep producing more comprehensive and structured articles
