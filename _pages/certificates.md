@@ -117,3 +117,21 @@ author_profile: true
 **May, 2020 (DataCamp)**
 
 <img src="/images/Online_certi/certificate_18.jpg" width="80%" height="80%">
+
+## Natural Language Processing in TensorFlow
+
+**August, 2020**
+
+<img src="/images/Online_certi/certificate_19.jpg" width="80%" height="80%">
+
+## Sequences, Time Series and Prediction
+
+**December, 2020**
+
+<img src="/images/Online_certi/certificate_20.jpg" width="80%" height="80%">
+
+## Databases and SQL for Data Science With Python
+
+**March, 2021**
+
+<img src="/images/Online_certi/certificate_21.jpg" width="80%" height="80%">

@@ -7,19 +7,17 @@ author_profile: true
 redirect_from:
   - /about/
   - /about.html
+
 ---
-
-I'm a full-time data scientist at Statistics Canada.
-### My work responsibility is addressed in the following points    
-* Constructed Machine Learning Model for classification problem in XGBoost, SVM, Random Forest Classifier, and ensemble method
-* Designed & Implemented Data Processing Pipeline with data preprocessing, data warehousing, and data prediction
-* Provided weekly analysis and presented the insight from dataset to clients
-* Generated the Dashboard with the analysis plots using Python Cufflinks, plotly, and Dash
-* Explained workflow to supervisor and received feedbacks
-* Built statistical testing framework to overcome challenges of data quality
-
-In terms of my academic background, I received my **Master Degree** in **Computer Science, Big Data at Simon Fraser University (SFU)**.
-
+## 個人介紹
+我在加拿大統計局當資料分析師，畢業於西門菲莎大學(Simon Fraser University)，就讀大數據研究所，大學就讀資料與財金管理系於臺北科技大學。 <br>
+我對資料分析感興趣，有時候會閱讀資料處理或AI相關文章，有時候會上線上課程於線上課程平台如 **Coursera**, **Udemy**, **Udacity**, 於Medium網頁張貼資料分析或資料模型的文章[Denise Medium Website](https://medium.com/@denisechendd)。
+### 工作內容
+* 使用Tensorflow、Pytorch和Sklearn多類別分類和回歸模型例如Logistic Regression, Random Forest Classifier, and XGBoost
+* 在自然語言處理NLP領域，情感分析他人的評論
+* 用Python處理大數據，將數據匯入Sqlite 資料庫
+* 將資料匯入ElasticSearch搜索引擎，並用Kibana產出數據圖表
+* 用Python分析數據，產出圖表
 
 As an Data enthusiast, I am passionate in deepening my knowledge in data science field by reading the latest technology news, knowing the latest model in NLP or Computer Vision field, and getting the insight of innovative ideas using machine learning technique in daily lives. Personally, I get
 motivated by reading others' blogs of machine learning articles and hosting personal projects on Cloud infrastructure.
