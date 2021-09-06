@@ -136,8 +136,10 @@ author_profile: true
 
 <img src="/images/Online_certi/certificate_21.jpg" width="80%" height="80%">
 
+## Google Analytics （分析）個人認證
 **June, 2021**
 <img src="/images/Online_certi/Google_Analytics.jpg" width="80%" height="80%">
 
+## Perform an A/B Test for an ad campaign using python
 **September, 2021**
 <img src="/images/Online_certi/certificate_22.jpg" width="80%" height="80%">
