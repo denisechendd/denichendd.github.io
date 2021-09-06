@@ -135,3 +135,9 @@ author_profile: true
 **March, 2021**
 
 <img src="/images/Online_certi/certificate_21.jpg" width="80%" height="80%">
+
+**June, 2021**
+<img src="/images/Online_certi/Google_Analytics.pdf" width="80%" height="80%">
+
+**September, 2021**
+<img src="/images/Online_certi/certificate_22" width="80%" height="80%">
